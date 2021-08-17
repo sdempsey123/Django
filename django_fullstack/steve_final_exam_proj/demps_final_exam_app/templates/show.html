@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Trip Details</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'css/style.css'%}">
+    
+</head>
+<body>
+    <h1>Hello Maria! Read about this trip! {{ show.id }}</h1>
+    <h3>Start Date: 10/15/19</h3>
+    <p>{{ show.start_date }}</p>
+    <h3>End Date: 11/1/19</h3>
+    <p>{{ show.end_date }}</p>
+    <h3>Created On: 6/28/18</h3>
+    <p>{{ show.created_on }}</p>
+    <h3>Last Updated: 7/30/18</h3>
+    <p>{{ show.last_updated }}</p>
+    <h3>Plan: Cheese tour</h3>
+    <p>{{ show.plan }}</p>
+    <h4>Created by Maria</h4>
+    <a href="/shows{{ show.id }}">Dashboard</a> | <a href="/shows{{ show.id }}">Logout</a>
+</body>
+</html>

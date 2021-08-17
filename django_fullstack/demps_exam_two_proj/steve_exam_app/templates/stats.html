@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Wish stats</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "css/style.css"%}'>
+</head>
+<body>
+    <div class='header'>
+        <h1>Hello {{ user.first_name }}</h1>
+        <h1>Total wishes granted so far for all users: {{ granted_wishes }}</h1>
+    </div>
+    <h3>Your granted wishes: {{ user_granted_wishes }}</h3>
+    <h3>Your pending wishes: {{ user_pending_wishes }}</h3>
+    <p><a id="back" href="/wishes">Dashboard</a> | <a id="back" href="/wishes">Logout</a></p>
+    
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel='stylesheet' href={% static "css/style.css" %}'>
+    <title>Success</title>
+
+</head>
+<body>
+    <h1>{{request.session.user_name}} has successfully logged in!</h1>
+
+    <form action="/create.message" method=POST>
+        {% csrf_token %}
+        <textarea name="content" cols="50" rows="20"></textarea>
+        <input type="submit" value="Post">
+    </form>
+
+    <div id="messages">
+        {% for message in all messages %}
+        <div class="message">
+            <p>Posted By: {{message.poster.first_name}} {{message.poster.last_name}}</p>
+            <p>{{message.created_at}}</p>
+            <p>{{message.content}}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <input type = "submit" value="Log Off"/>
+    
+</body>
+</html>

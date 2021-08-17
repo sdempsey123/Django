@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Making a wish</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "css/style.css"%}'>
+
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h4 id="introduction" class='header'>Hello {{ user.first_name }}</h4>
+        <form method='post' action="/logout">
+            {% csrf_token %}
+            <button type="submit" value='submit' id="logout" class="btn btn-danger">Logout</button>
+        </form>
+        <a class="new_wish" href="/new">Make a wish!</a>
+        <a class="stats" href="/stats">View stats!</a>
+    <div id='wish_table'>
+        <table class="table">
+            <thead>
+                <h3>Your wishes</h3>
+                <tr>
+                    <th>Item</th>
+                    <th>Date added</th>
+                    <th>Actions</th>
+                    
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <th>MacBookPro 15"</th>
+                    <th>July 15, 2018</th>
+                    <th><a href="http://127.0.0.1:8000">Remove</a></th>
+                    <th><a href="http://127.0.0.1:8000">Edit</a></th>
+                    <th><a href="http://127.0.0.1:8000">Granted</a></th>
+                    
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <th>RC Drone</th>
+                    <th>July 7, 2018</th>
+                    <th><a href="http://127.0.0.1:8000">Remove</a></th>
+                    <th><a href="http://127.0.0.1:8000">Edit</a></th>
+                    <th><a href="http://127.0.0.1:8000">Granted</a></th>
+                    
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <th>Rodin sculpture</th>
+                    <th>May 7, 2018</th>
+                    <th><a href="http://127.0.0.1:8000">Remove</a></th>
+                    <th><a href="http://127.0.0.1:8000">Edit</a></th>
+                    <th><a href="http://127.0.0.1:8000">Granted</a></th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for wish in wishes %}
+                <tr>
+                    <th scope="row">{{ wish.item }}</th>
+                    <td>{{ wish.created_at }}</td>
+                    <td><a href="/edit/{{wish.id}}">Edit</a></td>
+                    <td>
+                        <form action="/delete" method='POST'>
+                            {% csrf_token %}
+                            <input type="hidden" name='wish_id' value="{{ wish.id }}">
+                            <button type="submit" value='submit' id="remove" class="btn btn-danger">Remove</button>
+                            <!-- <button type="button">Remove</button> -->
+                            <!-- <button class="btn btn-danger" type="submit">Remove</button> -->
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/grant" method='POST'>
+                            {% csrf_token %}
+                            <input type="hidden" name='user_id' value="{{ user.id}}">
+                            <input type="hidden" name='wish_item' value="{{ wish.item }}">
+                            <input type="hidden" name='wish_id' value="{{ wish.id }}">
+                            <input type="hidden" name='wish_created' value="{{ wish.created_at }}">
+                            <button type="button">Grant</button>
+                            <!-- <button class="btn btn-success" type="submit">Grant</button> -->
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div id='grant_table'>
+        <table class="table">
+            <thead>
+                <h3>Granted wishes</h3>
+                <tr>
+                    <th>Item</th>
+                    <th>Wisher</th>
+                    <th>Date added</th>
+                    <th>Date granted</th>
+                    <th>Likes</th>
+                    <th>Actions</th>
+                </tr>
+
+                <tr>
+                    <th>Measles</th>
+                    <th>Rubeola</th>
+                    <th>May 3, 2018</th>
+                    <th>July 20, 2018</th>
+                    <th>4</th>
+                    <th>Like</th>
+                </tr>
+                <tr>
+                    <th>Haircut</th>
+                    <th>Michelle</th>
+                    <th>Jan 3, 2017</th>
+                    <th>Feb 17, 2018</th>
+                    <th>5</th>
+                    <th>Like</th>
+                </tr>
+                <tr>
+                    <th>Pie</th>
+                    <th>Michelle</th>
+                    <th>March 10, 2017</th>
+                    <th>March 23, 2018</th>
+                    <th>2</th>
+                    <th>Like</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for grant in granted_wishes %}
+                <tr>
+                    <th scope="row">{{ grant.item }}</th>
+                    <td>{{ grant.user.first_name }}</td>
+                    <td>{{ grant.date_added }}</td>
+                    <td>{{ grant.granted_at }}</td>
+                    <td>{{ grant.likes.count }}</td>
+                    <td><form action="/like" method='POST'>
+                        {% csrf_token %}
+                        <input type="hidden" name='grant_id' value="{{ grant.id }}">
+                        <input type="hidden" name='user_id' value="{{ user.id }}">
+                        <button type="submit">Logout</button>
+                    </form></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

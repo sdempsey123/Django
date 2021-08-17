@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Restful Courses</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'css/style.css'%}"">
+
+</head>
+<body>
+    <h1>Add a new course</h1>
+	{% if messages %}
+		{% for message in messages %}
+			{{ message }}
+		{% endfor %}
+	{% endif %}
+	<form action="/course/add" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+	<label for="coursename">Course Name:</label>
+    <input type="text" name="name"> 	
+	<label for="desc">Description:</label><textarea name="desc" rows="10" cols="50"></textarea> 
+	<input type="submit" value="Add">
+	</form>
+
+    <!-- <h1>All Courses</h1>	
+		<table style="width:100%; table-layout: fixed; text-align: center;">
+            <tr>
+                <th>Course Name</th>
+                <th>Description</th> 
+                <th>Date Added</th>
+                <th>Actions</th>
+                </tr>
+			{% for course in courses %}
+			<tr>
+                <td>{{course.name}}</td>
+                <td style="word-wrap: break-word;">{{course.desc}}</td>
+                <td>{{course.created_at}}</td>
+                <td> 
+			<form method="post" action="/delete/{{course.id}}">
+                {% csrf_token %}
+				<input type="hidden" value="{{course.id}}" name="id"> 
+			    <input type="submit" value="Delete">
+            </form>
+                </td>
+            <form method="post" action="/comment">
+                {% csrf_token %}
+                    <input type="hidden" value="{{course.id}}" name="id">
+                    <input type="text" name="comment">
+                <input type="submit" value="Comment">
+            </form>
+        </td>
+	</tr>
+			{% endfor %}
+	</table>
+				
+ -->
+
+
+
+<h1>All Courses</h1>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- START LOOPING THROUGH SHOWS -->
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.name }}</td>
+            <td>{{ course.desc }}</td>
+            <td><a href="/courses/{{ courseid }}">remove</a> 
+        </tr>
+        {% endfor %}
+        </tbody>
+       
+    </table>
+</body>
+</html>

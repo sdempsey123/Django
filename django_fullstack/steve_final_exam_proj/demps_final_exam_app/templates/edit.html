@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Edit Show</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'css/style.css'%}">
+    
+</head>
+<body>
+    <h1>Let's edit your trip</h1>
+    <form action="/shows/{{ show.id }}/update" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="destination">Destination</label>
+            <input type="text" name="destination" id="destination" class="form-control" value="{{ show.title }}">
+        </div>
+        <div class="form-group">
+            <label for="start_date">Start Date</label>
+            <input type="date" name="start_date" id="start_date" class="form-control" value="{{ show.network }}"> 
+        </div>
+        <div class="form-group">
+            <label for="end_date">End Date</label>
+            <input type="date" name="end_date" id="end_date" class="form-control" value="{{ show.release_date|date:'D d M Y' }}">
+        </div>
+        <div class="form-group">
+            <label for="plan">Plan</label>
+            <textarea name="plan" id="plan" cols="30" rows="10" class="form-control">{{ show.description }}</textarea>
+        </div>
+        <button class="btn btn-primary">Submit</button>
+        
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h1>Success! Welcome, Andrew!</h1>
+    <h2>Successfully registered (or logged in)!</h2>
+    {{user.email}}
+    {{user.id}}
+    <!-- <a href="/logout">Logout</a> -->
+    <a href="http://127.0.0.1:8000/">
+        <button>Logout</button>
+     </a>
+</body>
+</html>

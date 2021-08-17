@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Quotes</title>
+</head>
+<body>
+    <h1>Bob Bobbers' Quotes</h1>
+    <p>Eleanor Roosevelt: "Great minds discuss ideas, average minds discuss events, small minds discuss people"</p>
+    <br>
+    <p>Pablo Picasso: "Everything you can imagine is real."</p>
+    <form action="https://localhost:8000/quotes">
+        {% csrf_token %}
+        <input type="submit" value="Back" />
+    </form>
+    <form action="https://localhost:8000/quotes">
+        {% csrf_token %}
+        <input type="submit" value="Logout" />
+    </form>
+    
+</body>
+</html>

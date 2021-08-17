@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <h1>My List of Users</h1>
+    <table>
+        <thead>
+
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email address</th>
+          <th>Age</th>
+          </thead>
+          <tbody>
+          <td>1</td>
+          <td>Eleanor</td>
+          <td>Shellstrop</td>
+          <td>eleanor@shellstrop.com</td>
+          <td>30</td>
+        </tbody>
+        <tbody>
+          <td>2</td>
+          <td>Chidi</td>
+          <td>Anogonye</td>
+          <td>chidi@anogonye.com</td>
+          <td>32</td>
+        </tbody>
+        <tbody>
+          <td>3</td>
+          <td>Jason</td>
+          <td>Mendoza</td>
+          <td>jason@mendoza.com</td>
+          <td>24</td>
+        </tbody>
+        </table>
+      
+      <h1>Add a User</h1>
+      <form action="/action_page.php">
+        {% csrf_token %}
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname">
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname"><br>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email">
+        <label for="lname">Age:</label>
+        <input type="text" id="age" name="age"><br>
+        <button type="submit" formaction="http://127.0.0.1:8000/">Add</button>
+        
+        
+        
+      </form> 
+
+</body>
+</html>

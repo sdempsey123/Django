@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Dojo Survey results</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+    <p>Name: {{name}}</p>
+    <p>Dojo Location: {{location}}</p>
+    <p>Favorite Language: {{language}}</p>
+    <p>Comment: {{comment}}</p>
+    <p>Previous Ninja's name was {{prev_name}}</p>
+    <form action="/action_page.php" method="GET">
+        {% csrf_token %}
+        <button>Go Back</button>
+    </form>
+<!-- FILL OUT THE FORM ON HOME PAGE AND SUBMIT IT TO GET RESULT PAGE TO WORK! -->
+
+</body>
+</html>
+

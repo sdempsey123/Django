@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Comments Page</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'css/style.css'%}"">
+</head>
+<body>
+    <h1>Comments<h1>
+        {% for comment in comments %}
+        <h3>Comment:</h3>
+        <p>{{comment.comment}}</p>
+        <h3>Created at:</h3>
+        <p>{{comment.created_at}}</p>
+        
+    <a href="/">Go back</a> <br> <br> <br>
+
+    
+        {% endfor %}
+
+
+
+</body>
+</html>

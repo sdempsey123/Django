@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Edit your wish</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "css/style.css"%}'>
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+        <h2 class='new_user'>Hello {{ user.first_name }}! Let's edit your wish!</h2>
+        <form class='big_form' action="/update/{{wish.id}}" method='POST'>
+            {% csrf_token %}
+           <label for="exampleFormControlInput1">I wish for:</label>
+            <input type="text" class="form-control" value='{{ wish.item }}' id="exampleFormControlInput1" name='item'>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Description:</label>
+                <input type="text" class="form-control" value="{{ wish.desc }}" id="exampleFormControlInput1" name='desc'>
+            </div>
+            <button type="submit" value='submit' class="btn btn-success">Edit</button>
+            <a class='go_back' href="/wishes">Cancel</a>
+        </form>
+</body>
+</html>

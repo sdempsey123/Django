@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Dashboard</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    
+</head>
+<body>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+
+        
+        <h1>Welcome ""user""</h1>
+        <button type="submit" value='submit' id="logout" class="btn btn-danger">Logout</button>
+        <a href="http://127.0.0.1:8000/job">Add to My Jobs</a>
+
+        
+    
+      <table border = "1">
+         <tr>
+            <td>Jobs</td>
+            <td>Location</td>
+            <td>Action</td>
+         </tr>
+         
+         <tr>
+            <td>Rake Leaves</td>
+            <td>2190 Fun Ave.</td>
+            <td><a href="http://127.0.0.1:8000/job">View</a></td>
+            <td><a href="http://127.0.0.1:8000/job">add</a></td>
+            <td><a href="http://127.0.0.1:8000/edit">edit</a></td>
+            <td><a href="http://127.0.0.1:8000/edit">cancel</a></td>
+
+         </tr>
+         <tr>
+            <td>Move couch</td>
+            <td>1920 Zanker</td>
+            <td><a href="http://127.0.0.1:8000/job">View</a></td>
+            <td><a href="http://127.0.0.1:8000/job">add</a></td>
+            <td><a href="http://127.0.0.1:8000/edit">edit</a></td>
+            <td><a href="http://127.0.0.1:8000/edit">cancel</a></td>
+
+         </tr>
+         <tr>
+            <td>Walk my dog</td>
+            <td>6383 High St.</td>
+            <td><a href="http://127.0.0.1:8000/job">View</a></td>
+            <td><a href="http://127.0.0.1:8000/job">add</a></td>
+        </tr>
+        <tr>
+            <td>Grocery Shop</td>
+            <td>1 Hacker Ln.</td>
+            <td><a href="http://127.0.0.1:8000/job">View</a></td>
+            <td><a href="http://127.0.0.1:8000/job">add</a></td>
+            
+
+         </tr>
+      
+    
+    
+    
+    </table>
+    <h3>My jobs</h3>
+    <body>
+        <table border = "1">
+           <tr>
+              <td>Paint Fence</td>
+              <td><a href="http://127.0.0.1:8000/job">View</a></td>
+              <td><a href="http://127.0.0.1:8000">Done</a></td>
+             
+           </tr>
+           
+           <tr>
+              <td>Mow Lawn</td>
+              <td><a href="http://127.0.0.1:8000/job">View</a></td>
+              <td><a href="http://127.0.0.1:8000">Done</a></td>
+  
+           </tr>
+           <tr>
+              <td>Replace Light Bulbs</td>
+              <td><a href="http://127.0.0.1:8000/job">View</a></td>
+              <td><a href="http://127.0.0.1:8000">Done</a></td>
+  
+          
+  
+           </tr>
+        
+      
+      
+      
+      </table>
+      
+   </body>
+</html>

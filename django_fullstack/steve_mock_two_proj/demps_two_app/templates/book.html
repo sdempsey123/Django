@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel='stylesheet' href={% static "css/style.css" %}'>
+    <title>Steve's Book Page</title>
+
+</head>
+<body>
+    <h1>Welcome, Frodo!</h1>
+    <h2>Add a Favorite Book</h2>
+    <form action="/new_user/" method = "POST>"
+        {% csrf_token %}
+        <label>Title</label>
+        <input type = "text" name="title">
+        <br>
+        <label>Description</label>
+        <input type = "text" name="description">
+        <br>
+        <input type = "submit" value="Add"/>
+    </form>
+    
+    <h3>All Books</h3>
+    <a href="http://localhost:8000/books/1">There and Back Again</a><br>
+    <p>(added by Frodo Boggins)</p>
+    <p><i>this is one of your favorites</i></p>
+    <br>
+    <a href="http://localhost:8000/books/1">The Lord of the Rings</a><br>
+    <p>(added by Bilbo Boggins)</p>
+    <p><i>this is one of your favorites</i></p>
+    <br>
+    <a href="http://localhost:8000/books/3">The Silmarillion</a><br>
+    <p>(added by Tom Bombadil)</p>
+    <p><a href="http://localhost:8000/books/3">Add to Favorites</a></p>
+    <br>
+</body>
+</html>
+        

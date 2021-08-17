@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Ninja Gold</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
+</head>
+<body>
+    <h3>Your Gold: {{request.session.gold}}</h3>
+    <!-- Take the variable from views and use ginga to give the value of the variable. -->
+    <a href="/reset">Reset Session</a>
+    <h2>Farm</h2>
+    <p>(earns 10-20 golds)</p>
+    <form action="/process_money" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="building" value="farm">
+        <input type="submit" value="Find Gold!">
+    </form>
+    <h2>Cave</h2>
+    <p>(earns 5-10 golds)</p>
+    <form action="/process_money" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="building" value="cave">
+        <input type="submit" value="Find Gold!">
+    </form>
+    <h2>House</h2>
+    <p>(earns 2-5 golds)</p>
+    <form action="/process_money" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="building" value="house">
+        <input type="submit" value="Find Gold!">
+    </form>
+    <h2>Casino</h2>
+    <p>(earns/takes 0-50 golds)</p>
+    <form action="/process_money" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="building" value="casino">
+        <input type="submit" value="Find Gold!">
+    </form>
+    <div>
+        <h2>Activities</h2>
+        {% for activity in request.session.activities %}
+            {% if "Yay" in activity %}
+                <p class="green">{{activity}}</p>
+            {% else %}
+                <p class="red">{{activity}}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+</body>
+</html>

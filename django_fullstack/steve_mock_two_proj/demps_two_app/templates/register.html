@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel='stylesheet' href={% static "css/style.css" %}'>
+    <title>Steve's Mock Page One</title>
+
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+    </ul>
+    {% endif %}
+    <h2>Registration</h2>
+    <form action="/new_user/" method = "POST>"
+        {% csrf_token %}
+        <label>First Name</label>
+        <input type = "text" name="first_name">
+        <br>
+        <label>Last Name</label>
+        <input type = "text" name="last_name">
+        <br>
+        <label>Email</label>
+        <input type = "text" name="email">
+        <br>
+        <label>Password</label>
+        <input type = "text" name="password">
+        <br>
+        <label>Confirm Password</label>
+        <input type = "text" name="confirm_password">
+        <br>
+        <input type = "submit" value="Register"/>
+    </form>
+    <h2>Login</h2>
+    <form action="/new_user/" method = "POST>"
+        {% csrf_token %}
+        <label>Email</label>
+        <input type = "text" name="email">
+        <br>
+        <label>Password</label>
+        <input type = "text" name="password">
+        <br>
+        <input type = "submit" value="Log In"/>
+    </form>   
+                       
+
+</body>
+</html>

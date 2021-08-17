@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel='stylesheet' href={% static "css/style.css" %}'>
+    <title>Quotes</title>
+</head>
+<body>
+    <h2>Welcomde Hulk Hogan!</h3>
+        <h3>Quotes</h3>
+        <p>Eleanor Roosevelt: "Great minds discuss ideas, average minds discuss events, small minds discuss people."</p>
+        <p>Posted by<a href="Bob Bobbers"</a></p>
+            <p>93 people like this</p>
+            <button type="button">Like!</button>
+        <p>Bob Marley: "One good thing about music, when it hits you, you feel no pain."</p>
+        <p>Posted by<a href="Sally Sallers"</p></a>
+        <p>15 people like this</p>
+        <button type="button">Like!</button>
+        <p>Jim Morrison: "A friend is someone who gives you total freedom to be yourself."</p>
+        <p>Posted by<a href="Hulk Hogan"</p></a>
+            <p>40 people like this</p>
+            <button type="button">Like!</button>
+        <a href="Edit My Account"</a>
+            <button type="button">Logout</button>
+            <h3>Add a Quotes</h3>
+            <form action="/login/create" method="POST">
+                {% csrf_token %}
+                <label>Author <input type="text" name="author"></label><br>
+                <label>Quote <input type="text" name="quote"></label><br>
+                <input type="submit" value="Submit">
+            </form>
+           
+
+
+
+
+   
+</body>
+</html>

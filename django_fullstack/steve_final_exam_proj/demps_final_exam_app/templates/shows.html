@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Your trips</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'css/style.css'%}">
+</head>
+<body>
+    <h1>Hello {{user.first_name}}</h1>
+    <!-- <th><a href="/shows{{ show.id }}">Logout</a></th> -->
+    <h3>Your trips</h3>
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>Destination</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Plan</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+       
+            <!-- for loop, all shows context variable access with dot notation -->
+            <tbody>
+                {% for show in user.user_shows.all %}
+                    <tr>
+                        <td>{{ show.destination }}</td>
+                        <td>{{ show.start_date }}</td>
+                        <td>{{ show.end_date }}</td>
+                        <td>{{ show.plan }}</td>
+                        <td><a href="/shows/{{ show.id }}">Show</a> | <a href="/shows/{{ show.id }}/edit">Edit</a> | <a href="/shows/{{ show.id }}/delete">Delete</a></td>
+                    </tr>
+                {% endfor %}
+                
+            </tbody>
+       
+            
+           
+        </table>
+            
+        
+    <h3>Other people's trips</h3>
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>Destination</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Plan</th>
+                <th>Want to join?</th>
+                
+            </tr>
+            <tbody>
+                {% for show in shows %}
+                    <tr>
+                        <td>{{ show.destination }}</td>
+                        <td>{{ show.start_date }}</td>
+                        <td>{{ show.end_date }}</td>
+                        <td>{{ show.plan }}</td>
+                        <td><a href="/shows/{{ show.id }}">Show</a> | <a href="/shows/{{ show.id }}/edit">Edit</a> | <a href="/shows/{{ show.id }}/delete">Delete</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+        
+       <a href=/shows/new>Add a show!</a>
+    </table>
+</body>
+</html>
+
+
+
+

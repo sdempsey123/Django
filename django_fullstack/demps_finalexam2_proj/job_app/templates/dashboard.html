@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Your trips</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'css/style.css'%}">
+</head>
+<body>
+    <h1>Hello {{user.first_name}}</h1>
+    <!-- <th><a href="/shows{{ show.id }}">Logout</a></th> -->
+    <h3>Everyone's jobs</h3>
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>Job</th>
+                <th>Location</th>
+                <th>Actions</th>
+                
+            </tr>
+        </thead>
+       
+            <!-- for loop, all shows context variable access with dot notation -->
+            <tbody>
+                {% for job in user.user_jobs.all %}
+                    <tr>
+                        <td>{{ job.job }}</td>
+                        <td>{{ job.location }}</td>
+                        <td>{{ job.actions }}</td>
+                        <td><a href="/jobs/{{ job.id }}/view">View</a> | <a href="/jobs/{{ job.id }}/remove">Remove</a> | <a href="/jobs/{{ job.id }}/edit">Edit</a> | <a href="/jobs/{{ job.id }}/add">Add</a></td>
+                    </tr>
+                {% endfor %}
+                
+            </tbody>
+       
+            
+           
+        </table>
+            
+        
+    <h3>Jon's jobs</h3>
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>Job</th>
+                <th>Actions</th>
+                
+                
+            </tr>
+            <tbody>
+                {% for job in user.user_jobs.all %}
+                    <tr>
+                        <td>{{ job.job }}</td>
+                        <td>{{ job.actions }}</td>
+                        <td><a href="/jobs/{{ job.id }}/view">View</a> | <a href="/jobs/{{ job.id }}/done">Done</a> | <a href="/jobs/{{ job.id }}/give_up">Give up</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+        
+       <a href=/jobs/new>New job!</a>
+       <a href=/jobs/log_and_reg>Logout</a>
+       
+
+    </table>
+</body>
+</html>

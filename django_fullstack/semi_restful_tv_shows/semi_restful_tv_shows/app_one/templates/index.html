@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Shows Homepage</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Network</th>
+                <th>Release_Date</th>
+                <th>Description</th>
+
+
+            </tr>
+        </thead>
+        <tbody>{% for show in all_shows %}
+            <tr>
+                <td>{{show.title}}</td>
+                <td>{{show.network}}</td>
+                <td>{{show.release_date}}</td>
+                <td>{{show.description}}</td>
+                <td><a href="/shows/{{show.id}}">Show</a>
+                <form> action="/shows{{show.id}}/destroy" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete">
+                </form>
+                <a href="/show/{{show.id}}/edit">Edit</a>
+                
+                
+                
+                
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/shows/create" method="POST">
+        {% csrf_token %}
+        <label>Title: <input type="text" title="show_title"></label>
+        <label>Network: <input type="text" network="network"></label>
+        <label>Release_Date: <input type="text" release_date="release_date"></label>
+        <label>Description: <input type="text" description="description"></label>
+        <input type="submit" value="Create">
+
+        
+        
+       
+
+    </form>
+    
+</body>
+</html>
+

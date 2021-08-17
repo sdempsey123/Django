@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel='stylesheet' href={% static "css/style.css" %}'>
+    <title>Success Page/title>
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message.message }}</li>
+        {% endfor %}
+    </ul>
+   
+    {% endif %} -->
+    <h1>Success! Welcome, {{user.first_name}} {{user.last_name}}</h1>
+    <h3>Successfully registered (or logged in)!</h3>
+    <p><a href="logout">Log Out</p></a>
+    
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel='stylesheet' href='{% static "style.css" %}'>
+    <title>Book Profile</title>
+</head>
+<body>
+    <div>
+        <h2>{{book.title}}</h2>
+        <h3>Added by: {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}}</h3>
+        <h3>Added on: {{book.created_at}}</h3>
+        <h3>Last updated at: {{book.updated_at}}</h3>
+        <h4>Description</h4>
+        {% if book.uploaded_by.id != request.session.user_id %}
+        <p>{{book.description}}</p>
+        {% else %}
+            <form action='/books/{{book.id}}/update' method='POST'>
+                {% csrf_token %}
+                 <input type='text' name='description' placeholder={{book.description}}>
+                <button type='submit'>Update</button>
+            </form>
+            <a href="/books/{{book.id}}/delete">Delete</a>
+        {% endif %}
+        
+
+    </div>
+    <div>
+        <h3> Users who favorited this book</h3>
+        <ul>
+        {% for user in book.users_who_like.all %}
+        <li>{{user.first_name}} {{user.last_name}}</li>
+        {% endfor %}
+        </ul>
+        {% if user in book.users_who_like.all %}
+        <a href="/books/{{book.id}}/unfavorite">Remove from favs</a>
+        {% else %}
+        <a href="/books/{{book.id}}/favorite">Add to favs</a>
+        {% endif %}
+    </div>
+    <div>
+        <a href="/books">Main Page</a>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Dojo Survey revisited</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+    <form action="/result" method="POST">
+        {% csrf_token %}
+        <p>Name: <input name="name" type="text"></p>
+        <!-- The key to the form is name="name" -->
+        <p>Dojo location:
+            <select name="location">
+                <option value="San Jose">San Jose</option>
+                <option value="Seattle">Seattle</option>
+                <option value="Oakland">Oakland</option>
+
+            </select> </p>
+        <p>Favorite Language:
+            <select name="language">
+                <option value="Python">Python</option>
+                <option value="Django">Django</option>
+                <option value="MERN">MERN</option>
+            </select> </p>
+        <p>Comment: <input name="comment" type="text"></p>
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+</body>
+</html>
